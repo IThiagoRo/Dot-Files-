@@ -1,14 +1,22 @@
-
+  
 """""""""
 "Plugins"
 """""""""
+
 call plug#begin('~/.vim/plugged')
 
+
+Plug 'joshdick/onedark.vim'
+Plug 'morhetz/gruvbox'
+Plug 'jacoborus/tender.vim'              " Theme
+Plug 'nordtheme/vim'                     " Theme
+Plug 'vinitkumar/oscura-vim'            " Theme
 Plug 'jcherven/jummidark.vim'			 " Main Theme 
 Plug 'scrooloose/nerdtree'				 " side bar file tree
 Plug 'ryanoasis/vim-devicons'			 "Pretty Icons
-"Plug 'itchyny/lightline.vim'			 " minmal status bar
-"Plug 'vim-airline/vim-airline-themes'  " Themes for bar
+" Plug 'itchyny/lightline.vim'			 " minmal status bar
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'  " Themes for bar
 Plug 'tpope/vim-fugitive'				 " allows git commands in vim session
 " Plug 'ncm2/ncm2'						 " completion [dep]: nvim-0.2.2, nvim-yarp, python3
 Plug 'junegunn/fzf'                      " File Searchs 
@@ -21,9 +29,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'nathanaelkane/vim-indent-guides'
 """""""""""""""""""""
 
-
 call plug#end()
-
 
 """""""""""""
 ""NERDTreee""
@@ -39,8 +45,6 @@ let NERDTreeStatusline='NERDTree'
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " nerd commenter
 noremap <leader>c :NERDCommenterComment<CR>
-
-
 " use ctrl+hjkl to move between split/vsplit panels
 tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-j> <C-\><C-n><C-w>j
@@ -70,11 +74,17 @@ nnoremap tm :tabmove
 " Turn syntax highlighting on.
 syntax on 
 set background=dark
+
+if (has("termguicolors"))
+ set termguicolors
+endif
+
 colorscheme jummidark
 
 ""Leader Shortcuts""
 let mapleader=","
 
+set nocompatible
 set number 
 set relativenumber
 set tabstop=4
@@ -89,7 +99,8 @@ set wildmode=list:longest
 
 set lazyredraw  
 
-set cursorline
+set cursorline  
+
 "/set cursorcolumn
 
 """"""""
@@ -153,6 +164,11 @@ filetype indent on
 set shiftwidth=4 
 set clipboard=unnamed
 set nopaste
+
+""""""""""""
+"Color Term"
+""""""""""""
+set termguicolors
 
 
 """"""""""""""""""""""
@@ -303,6 +319,12 @@ command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.org
 " provide custom statusline: lightline.vim, vim-airline
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
+" set lighline theme inside lightline config
+ let g:lightline = { 'colorscheme': 'base16_grayscale_dark' }
+
+" set airline theme
+ let g:airline_theme = 'base16_grayscale_dark'
+
 " Mappings for CoCList
 " Show all diagnostics
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
@@ -320,3 +342,6 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+" devicons: reasonable defaults from webinstall.dev/vim-devicons
+source ~/.vim/plugins/devicons.vim
