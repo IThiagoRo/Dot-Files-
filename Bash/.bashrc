@@ -122,13 +122,9 @@ fi
 ####
 # Colores del terminalexport 
 #PS1='\[\e[0;32m\]\u@\h\[\e[m\]:\[\e[0;34m\]\w\[\e[m\]\$ '# Promptecho -e "\e]P0000000"# Negroecho -e "\e]P1d75f5f"# Rojo oscuroecho -e "\e]P287afd7"# Azulecho -e "\e]P3ffaf5f"# Naranjaecho -e "\e]P4d7afaf"# Grisecho -e "\e]P593af87"# Verdeecho -e "\e]P6afafd7"# Azul claroecho -e "\e]P7d7d7d7"# Blanco/gris claro
-clear
-
+export TERM=xterm-256color
 
 
 # My aliases
 alias python='python3'
-alias livebook='sudo docker run -p 8080:8080 -p 8081:8081 --pull always ghcr.io/livebook-dev/livebook'
-alias kind='/home/ilich/go/bin/./kind'
-alias awsvpn='/opt/awsvpnclient/./"AWS VPN Client"'
-alias mtunel='az ssh vm -g mono-colombia-sdbx --name mono-sdbx-data-vm-7266 -- -L 8889:localhost:8889'
+alias work='cd ~/work/'
